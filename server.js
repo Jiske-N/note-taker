@@ -8,7 +8,7 @@ const app = express();
 //   res.send("Hello World!");
 // });
 
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 // starter code below
 // ___________________________________________________________________________________________________________________
 // Getting Started
@@ -24,7 +24,7 @@ const app = express();
 
 // body parser middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/notes", require("./public/assets/js/routes"));
 

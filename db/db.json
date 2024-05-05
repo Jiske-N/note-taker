@@ -1,12 +1,1 @@
-[
-	{
-		"id": "1",
-		"title": "Test Title",
-		"text": "Test text"
-	},
-	{
-		"id": "df754768-71bd-4839-85a7-985d3f08870c",
-		"title": "Test Title",
-		"text": "Test text"
-	}
-]
+[{"id":"1604fc5f-0ee1-41db-914f-f0dfa318f1a7","title":"bob","text":"jane"},{"id":"d87e3b34-b118-4855-84c9-48546c9482e8","title":"jane","text":"doe"}]
