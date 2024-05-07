@@ -32,12 +32,44 @@ router.post("/", async (req, res) => {
   });
 
   const notes = JSON.parse(dbContents);
+  // console.log(1, notes);
 
   notes.push(newNote);
 
-  await fs.writeFile("./db/db.json", JSON.stringify(notes));
+  // console.log(2, notes);
 
-  res.json(db);
+  await fs.writeFile("./db/db.json", JSON.stringify(notes));
+  // fs.writeFile("./db/db.json", JSON.stringify(notes)).then(() => {
+  //   res.send(notes);
+  // });
+
+  // res.json(JSON.stringify(notes));
+  // res.json(JSON.stringify(notes));
+  res.json(notes);
+  // res.json(notes);
+  // res.json(db);
+  // res.json(db);
+});
+
+// delete note from ask BCS
+router.delete("/:id", async (req, res) => {
+  console.log("string", req.params.id);
+  try {
+    const dbContents = await fs.readFile("./db/db.json", "utf8");
+    let notes = JSON.parse(dbContents);
+    const idMatch = notes.some((note) => note.id === Number(req.params.id)); // Assuming IDs are numbers and converting params.id to number
+    if (idMatch) {
+      const updatedArray = notes.filter(
+        (note) => note.id !== Number(req.params.id)
+      );
+      notes = JSON.stringify(updatedArray);
+      await fs.writeFile("./db/db.json", notes);
+    }
+    res.json(notes); // Sending response once
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error processing your request");
+  }
 });
 
 // delete note
@@ -57,12 +89,18 @@ router.delete("/:id", async (req, res) => {
   if (idMatch) {
     const updatedArray = notes.filter((note) => note.id !== req.params.id);
 
-    notes = updatedArray;
+    notes = JSON.stringify(updatedArray);
+
+    await fs.writeFile("./db/db.json", notes);
   }
 
-  await fs.writeFile("./db/db.json", JSON.stringify(notes));
+  // await fs.writeFile("./db/db.json", JSON.stringify(notes));
 
-  res.json(db);
+  res.json(notes);
+  res.json(notes);
+  // res.json(notes);
+  // res.json(JSON.stringify(notes));
+  // res.json(db);
 });
 
 // {
