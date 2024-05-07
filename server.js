@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/notes", require("./public/assets/js/routes"));
+app.use("/api/notes", require("./lib/routes"));
 
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "notes.html"));
