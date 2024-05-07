@@ -42,8 +42,6 @@ router.post("/", async (req, res) => {
 
 // delete note
 router.delete("/:id", async (req, res) => {
-  console.log("string", req.params.id);
-
   const dbContents = await fs.readFile("./db/db.json", "utf8");
 
   let notes = JSON.parse(dbContents);
